@@ -8,24 +8,34 @@ import {
   Delete,
 } from '@nestjs/common';
 import { ApiOperation, ApiProperty, ApiTags } from '@nestjs/swagger';
+import { IsString } from 'class-validator';
+import { prop } from '@typegoose/typegoose';
 
 @ApiTags('帖子')
 class CreatePostDto {
   @ApiProperty({
-    title: 'title',
+    title: '博客标题',
+    description: '博客标题2',
+    example: 'Nestjs学习',
   })
+  @prop()
+  @IsString()
   title: string;
 
   @ApiProperty({
-    title: 'content',
+    title: '博客内容',
+    description: '博客内容2',
+    example: 'Nestjs学习-应该这样学习....',
   })
+  @prop()
+  @IsString()
   content: string;
 }
 
 @Controller('posts')
 export class PostsController {
   @Get()
-  @ApiOperation({ summary: '帖子列表' })
+  @ApiOperation({ summary: '帖子列表', description: '帖子列表2' })
   index() {
     return [
       {
