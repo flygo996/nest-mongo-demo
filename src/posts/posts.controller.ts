@@ -1,49 +1,31 @@
 import {
   Controller,
   Get,
-  Post,
+  Post as POST,
   Param,
   Body,
   Put,
   Delete,
 } from '@nestjs/common';
-import { ApiOperation, ApiProperty, ApiTags } from '@nestjs/swagger';
+import { ApiOperation, ApiTags } from '@nestjs/swagger';
+import { PostsService } from './posts.service';
+import { Post } from './post.model';
 
 @ApiTags('帖子')
-class CreatePostDto {
-  @ApiProperty({
-    title: 'title',
-  })
-  title: string;
-
-  @ApiProperty({
-    title: 'content',
-  })
-  content: string;
-}
-
 @Controller('posts')
 export class PostsController {
+  constructor(private readonly postsService: PostsService) {}
+
   @Get()
-  @ApiOperation({ summary: '帖子列表' })
-  index() {
-    return [
-      {
-        id: '111',
-        title: '帖子1',
-        content: 'aaaa',
-      },
-      {
-        id: '2222',
-        title: '帖子2',
-        content: 'bbbb',
-      },
-    ];
+  @ApiOperation({ summary: '帖子列表', description: '帖子列表2' })
+  async findAll(): Promise<Post[] | null> {
+    return await this.postsService.findAll();
   }
-  @Post()
+
+  @POST()
   @ApiOperation({ summary: '创建帖子' })
-  create(@Body() body: CreatePostDto) {
-    return body;
+  async create(@Body() Post: Post): Promise<Post> {
+    return await this.postsService.create(Post);
   }
   @Get(':id')
   @ApiOperation({ summary: '帖子详情' })
@@ -54,17 +36,19 @@ export class PostsController {
       content: 'bbbb',
     };
   }
+
   @Put(':id')
   @ApiOperation({ summary: '编辑帖子' })
-  update(@Param('id') id: string, @Body() body: CreatePostDto) {
+  async update(@Param('id') id: string, @Body() body: Post) {
     console.log(id, body);
     return {
       success: true,
     };
   }
+
   @Delete(':id')
   @ApiOperation({ summary: '删除帖子' })
-  remove(@Param() id: string) {
+  async remove(@Param() id: string) {
     console.log(id);
     return {
       success: true,
