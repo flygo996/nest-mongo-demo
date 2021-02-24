@@ -8,7 +8,9 @@ export class Post {
     description: '博客标题2',
     example: 'Nestjs学习',
   })
-  @prop()
+  @prop({
+    required: true,
+  })
   @IsString()
   title: string;
 
@@ -17,7 +19,9 @@ export class Post {
     description: '博客内容2',
     example: 'Nestjs学习-应该这样学习....',
   })
-  @prop()
+  @prop({
+    required: true,
+  })
   @IsString()
   content: string;
 }
