@@ -15,6 +15,7 @@ export class User {
 
   @ApiProperty()
   @prop({
+    select: false, // 查询时不返回该字段
     get(val: string) {
       return val;
     },
