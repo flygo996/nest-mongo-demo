@@ -1,9 +1,11 @@
 import { NestFactory } from '@nestjs/core';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
+import * as compression from 'compression';
 import { AppModule } from './app.module';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
+  app.use(compression()); // Compression can greatly decrease the size of the response body, thereby increasing the speed of a web app.
 
   const options = new DocumentBuilder()
     .setTitle('nestjs 博客API')
