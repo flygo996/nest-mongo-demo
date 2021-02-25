@@ -3,12 +3,14 @@ import { InjectModel } from 'nestjs-typegoose';
 import { JwtService } from '@nestjs/jwt';
 import { ReturnModelType } from '@typegoose/typegoose';
 import { User } from './user.model';
+import { RegisterDto } from './dto/register.dto';
+import { LoginDto } from './dto/login.dto';
 
 @Injectable()
 export class AuthService {
   constructor(
-    @InjectModel(User) private readonly userModel: ReturnModelType<typeof User>,
     private jwtService: JwtService,
+    @InjectModel(User) private readonly userModel: ReturnModelType<typeof User>,
   ) {}
 
   async validateUser(username: string, pass: string): Promise<any> {
@@ -20,21 +22,22 @@ export class AuthService {
     return null;
   }
 
-  async register(userName, password) {
-    console.log(userName, password);
-    return {
-      msg: '注册成功',
-      success: true,
-      data: {
-        userName,
-        password,
-      },
-    };
+  async findAll() {
+    return await this.userModel.find().exec();
+  }
+  async register(user: RegisterDto) {
+    console.log('user-register:', user);
+    const { username, password } = user;
+    const obj = await this.userModel.create({
+      username,
+      password,
+    });
+    return obj;
   }
 
-  async login(user: any) {
-    console.log('user', user);
-    const payload = { username: user.username, sub: user.userId };
+  async login(user: LoginDto) {
+    console.log('user-login:', user);
+    const payload = { username: user.username, sub: user.username };
     return {
       msg: '登录成功',
       success: true,

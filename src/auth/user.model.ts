@@ -3,15 +3,15 @@ import { ApiProperty } from '@nestjs/swagger';
 import { IsString } from 'class-validator';
 import { hashSync } from 'bcryptjs';
 export class User {
-  @ApiProperty()
-  @prop()
-  @IsString()
-  userId: string;
+  // @ApiProperty()
+  // @prop()
+  // @IsString()
+  // userId: string;
 
   @ApiProperty()
   @prop()
   @IsString()
-  userName: string;
+  username: string;
 
   @ApiProperty()
   @prop({
