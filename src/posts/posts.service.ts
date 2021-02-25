@@ -17,4 +17,9 @@ export class PostsService {
     const createdPost = new this.postModel(createPostDto);
     return await createdPost.save();
   }
+  async findOne(id: string): Promise<Post> {
+    return await this.postModel.findOne({
+      id,
+    });
+  }
 }

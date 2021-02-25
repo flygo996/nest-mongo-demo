@@ -29,12 +29,8 @@ export class PostsController {
   }
   @Get(':id')
   @ApiOperation({ summary: '帖子详情' })
-  details(@Param('id') id: string) {
-    return {
-      id: id,
-      title: '帖子2',
-      content: 'bbbb',
-    };
+  async details(@Param('id') id: string) {
+    return await this.postsService.findOne(id);
   }
 
   @Put(':id')
