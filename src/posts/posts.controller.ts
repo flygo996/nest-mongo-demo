@@ -29,7 +29,7 @@ export class PostsController {
   }
   @Get(':id')
   @ApiOperation({ summary: '帖子详情' })
-  async details(@Param('id') id: string) {
+  async findOne(@Param('id') id: string) {
     return await this.postsService.findOne(id);
   }
 
@@ -44,10 +44,7 @@ export class PostsController {
 
   @Delete(':id')
   @ApiOperation({ summary: '删除帖子' })
-  async remove(@Param() id: string) {
-    console.log(id);
-    return {
-      success: true,
-    };
+  async remove(@Param('id') id: string) {
+    return await this.postsService.remove(id);
   }
 }

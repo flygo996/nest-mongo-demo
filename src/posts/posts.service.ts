@@ -17,9 +17,10 @@ export class PostsService {
     const createdPost = new this.postModel(createPostDto);
     return await createdPost.save();
   }
-  async findOne(id: string): Promise<Post> {
-    return await this.postModel.findOne({
-      id,
-    });
+  async findOne(id: string): Promise<any> {
+    return await this.postModel.findById(id);
+  }
+  async remove(id: string): Promise<any> {
+    return await this.postModel.deleteOne({ _id: id });
   }
 }
