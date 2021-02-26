@@ -1,4 +1,6 @@
 import { Module } from '@nestjs/common';
+import { ServeStaticModule } from '@nestjs/serve-static';
+import { join } from 'path';
 import { TypegooseModule } from 'nestjs-typegoose';
 import { PostsModule } from './posts/posts.module';
 import { UploadsModule } from './uploads/uploads.module';
@@ -12,6 +14,10 @@ import { AppController } from './app.controller';
       useUnifiedTopology: true,
       useCreateIndex: true,
       useFindAndModify: false,
+    }),
+    ServeStaticModule.forRoot({
+      rootPath: join(__dirname, '..', 'public'),
+      exclude: ['/api*'],
     }),
     PostsModule,
     UploadsModule,

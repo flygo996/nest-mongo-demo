@@ -23,6 +23,7 @@ export class UploadsController {
   @ApiOperation({ summary: '上传单个文件' })
   @UseInterceptors(FileInterceptor('file')) // file对应HTML表单的name属性
   UploadedFile(@UploadedFile() file: Express.Multer.File, @Body() body) {
+    console.log(file);
     return {
       body,
       file,

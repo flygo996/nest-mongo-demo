@@ -14,6 +14,7 @@ import * as nuid from 'nuid';
         destination: `./public/uploads/${dayjs().format('YYYY-MM-DD')}`,
         filename: (req, file, cb) => {
           const filename = `${nuid.next()}.${file.originalname}`;
+          console.log(file);
           return cb(null, filename);
         },
       }),
