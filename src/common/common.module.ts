@@ -11,4 +11,4 @@ import { HttpExceptionFilter } from './filters/http-exception.filter';
     { provide: APP_INTERCEPTOR, useClass: HttpExceptionFilter },
   ],
 })
-export class CoreModule {}
+export class CommonModule {}
