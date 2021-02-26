@@ -4,9 +4,9 @@ import { JwtModule } from '@nestjs/jwt';
 import { TypegooseModule } from 'nestjs-typegoose';
 
 import { AuthService } from './auth.service';
-import { LocalStrategy } from './local.strategy';
-import { JwtStrategy } from './jwt.strategy';
-import { jwtConstants } from './constants';
+import { LocalStrategy } from './strategies/local.strategy';
+import { JwtStrategy } from './strategies/jwt.strategy';
+import { jwtConstants } from './strategies/constants';
 import { AuthController } from './auth.controller';
 import { User } from './user.model';
 
