@@ -13,20 +13,16 @@ import {
   AnyFilesInterceptor,
 } from '@nestjs/platform-express';
 import { ApiOperation, ApiProperty, ApiTags } from '@nestjs/swagger';
+import { UploadsService } from './uploads.service';
 
 @ApiTags('文件上传')
 @Controller('uploads')
 export class UploadsController {
+  constructor(private readonly uploadsService: UploadsService) {}
   @Post('file')
   @ApiOperation({ summary: '上传单个文件' })
   @UseInterceptors(FileInterceptor('file')) // file对应HTML表单的name属性
   UploadedFile(@UploadedFile() file: Express.Multer.File, @Body() body) {
-    console.log(body);
-    console.log(file);
-    // const writeImage = createWriteStream(
-    //   join(__dirname, '..', 'upload', `${file.originalname}`),
-    // );
-    // writeImage.write(file.buffer);
     return {
       body,
       file,
@@ -37,12 +33,6 @@ export class UploadsController {
   @ApiOperation({ summary: '上传文件数组，名字都相同' })
   @UseInterceptors(FilesInterceptor('files')) // file对应HTML表单的name属性
   UploadedFiles(@UploadedFiles() files: Express.Multer.File, @Body() body) {
-    console.log(body);
-    console.log(files);
-    // const writeImage = createWriteStream(
-    //   join(__dirname, '..', 'upload', `${file.originalname}`),
-    // );
-    // writeImage.write(file.buffer);
     return {
       body,
       files,
@@ -67,12 +57,6 @@ export class UploadsController {
     @UploadedFiles() files: Express.Multer.File,
     @Body() body,
   ) {
-    console.log(body);
-    console.log(files);
-    // const writeImage = createWriteStream(
-    //   join(__dirname, '..', 'upload', `${file.originalname}`),
-    // );
-    // writeImage.write(file.buffer);
     return {
       body,
       files,
@@ -83,12 +67,6 @@ export class UploadsController {
   @ApiOperation({ summary: '上传任意文件，跟multiFiles类似' })
   @UseInterceptors(AnyFilesInterceptor()) // file对应HTML表单的name属性
   UploadedAnyFiles(@UploadedFiles() files: Express.Multer.File, @Body() body) {
-    console.log(body);
-    console.log(files);
-    // const writeImage = createWriteStream(
-    //   join(__dirname, '..', 'upload', `${file.originalname}`),
-    // );
-    // writeImage.write(file.buffer);
     return {
       body,
       files,
