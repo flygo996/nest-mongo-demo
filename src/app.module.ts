@@ -6,6 +6,7 @@ import { PostsModule } from './posts/posts.module';
 import { UploadsModule } from './uploads/uploads.module';
 import { AuthModule } from './auth/auth.module';
 import { AppController } from './app.controller';
+import { CoreModule } from './common/core.module';
 
 @Module({
   imports: [
@@ -22,6 +23,7 @@ import { AppController } from './app.controller';
     PostsModule,
     UploadsModule,
     AuthModule,
+    CoreModule,
   ],
   controllers: [AppController],
 })
