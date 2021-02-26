@@ -3,6 +3,7 @@ import { TypegooseModule } from 'nestjs-typegoose';
 import { PostsModule } from './posts/posts.module';
 import { UploadsModule } from './uploads/uploads.module';
 import { AuthModule } from './auth/auth.module';
+import { AppController } from './app.controller';
 
 @Module({
   imports: [
@@ -16,5 +17,6 @@ import { AuthModule } from './auth/auth.module';
     UploadsModule,
     AuthModule,
   ],
+  controllers: [AppController],
 })
 export class AppModule {}

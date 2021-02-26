@@ -17,7 +17,8 @@ async function bootstrap() {
   SwaggerModule.setup('api-docs', app, document);
 
   await app.listen(3000);
-  console.log('http://localhost:3000');
-  console.log('http://localhost:3000/api-docs');
+
+  console.log(`Application is running on: ${await app.getUrl()}`);
+  console.log(`The api-docs is running on: ${await app.getUrl()}/api-docs`);
 }
 bootstrap();
