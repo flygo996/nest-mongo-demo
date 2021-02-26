@@ -10,7 +10,9 @@ import { TransformInterceptor } from './common/interceptors/transform.intercepto
 import { AppModule } from './app.module';
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
+  const app = await NestFactory.create(AppModule, {
+    logger: ['error', 'warn', 'log'], // log,error,warn,debug和verbose。
+  });
   app.use(compression()); // Compression can greatly decrease the size of the response body, thereby  increasing the speed of a web app.
   app.enableCors();
   app.setGlobalPrefix('api');
