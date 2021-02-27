@@ -26,6 +26,7 @@ export class UploadsController {
     console.log(file);
     return {
       body,
+      url: `http://localhost:3300/${file.path}`,
       file,
     };
   }
