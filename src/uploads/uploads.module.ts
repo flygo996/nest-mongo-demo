@@ -3,7 +3,6 @@ import { MulterModule } from '@nestjs/platform-express';
 import { diskStorage } from 'multer';
 import { UploadsController } from './uploads.controller';
 import { UploadsService } from './uploads.service';
-import dayjs = require('dayjs');
 import * as nuid from 'nuid';
 
 @Module({
@@ -11,7 +10,7 @@ import * as nuid from 'nuid';
     MulterModule.register({
       storage: diskStorage({
         // 配置文件上传后的文件夹路径
-        destination: `./public/uploads/${dayjs().format('YYYY-MM-DD')}`,
+        destination: `uploads`,
         filename: (req, file, cb) => {
           const filename = `${nuid.next()}.${file.originalname}`;
           console.log(file);
