@@ -2,7 +2,7 @@ import { Module } from '@nestjs/common';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
 import { TypegooseModule } from 'nestjs-typegoose';
-import { PostsModule } from './posts/posts.module';
+import { CatsModule } from './cats/cats.module';
 import { UploadsModule } from './uploads/uploads.module';
 import { AuthModule } from './auth/auth.module';
 import { AppController } from './app.controller';
@@ -20,7 +20,7 @@ import { CommonModule } from './common/common.module';
       rootPath: join(__dirname, '..', 'public'),
       exclude: ['/api*'],
     }),
-    PostsModule,
+    CatsModule,
     UploadsModule,
     AuthModule,
     CommonModule,

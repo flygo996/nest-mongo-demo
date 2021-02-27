@@ -2,7 +2,7 @@ import { prop } from '@typegoose/typegoose';
 import { ApiProperty } from '@nestjs/swagger';
 import { IsString } from 'class-validator';
 
-export class Post {
+export class Cat {
   @ApiProperty({
     title: '博客标题',
   })
