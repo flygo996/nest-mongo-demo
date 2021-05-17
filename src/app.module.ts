@@ -5,6 +5,7 @@ import { UploadsModule } from './uploads/uploads.module';
 import { AuthModule } from './auth/auth.module';
 import { AppController } from './app.controller';
 import { CommonModule } from './common/common.module';
+import { ChatModule } from './chat/chat.module';
 
 @Module({
   imports: [
@@ -19,6 +20,7 @@ import { CommonModule } from './common/common.module';
     UploadsModule,
     AuthModule,
     CommonModule,
+    ChatModule,
   ],
   controllers: [AppController],
 })
